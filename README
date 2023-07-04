@@ -1,0 +1,127 @@
+API de Gerenciamento de Tarefas - Documentação
+Base URL: http://example.com/api/tasks
+
+Listar todas as tarefas
+Endpoint: GET /tasks
+
+Descrição: Retorna todas as tarefas cadastradas no sistema.
+
+Resposta esperada:
+
+json
+Copy code
+Status: 200 OK
+[
+  {
+    "id": 1,
+    "title": "Comprar mantimentos",
+    "description": "Ir ao supermercado e comprar mantimentos para a semana.",
+    "status": "uncompleted"
+  },
+  {
+    "id": 2,
+    "title": "Estudar para o exame",
+    "description": "Revisar o material e resolver exercícios para o exame de matemática.",
+    "status": "completed"
+  }
+  // Outras tarefas...
+]
+Obter detalhes de uma tarefa específica
+Endpoint: GET /tasks/{id}
+
+Descrição: Retorna os detalhes de uma tarefa específica com base no ID fornecido.
+
+Parâmetros:
+
+id (obrigatório): O ID da tarefa que deseja obter detalhes.
+Resposta esperada:
+
+json
+Copy code
+Status: 200 OK
+{
+  "id": 1,
+  "title": "Comprar mantimentos",
+  "description": "Ir ao supermercado e comprar mantimentos para a semana.",
+  "status": "uncompleted"
+}
+Criar uma nova tarefa
+Endpoint: POST /tasks
+
+Descrição: Cria uma nova tarefa no sistema.
+
+Parâmetros:
+
+title (obrigatório): O título da tarefa.
+description (obrigatório): A descrição da tarefa.
+status (obrigatório): O status da tarefa, que pode ser "completed" ou "uncompleted".
+Corpo da requisição:
+
+json
+Copy code
+{
+  "title": "Tarefa de exemplo",
+  "description": "Esta é uma tarefa de exemplo criada via API.",
+  "status": "uncompleted"
+}
+Resposta esperada:
+
+json
+Copy code
+Status: 201 Created
+{
+  "message": "Tarefa criada com sucesso",
+  "task": {
+    "id": 3,
+    "title": "Tarefa de exemplo",
+    "description": "Esta é uma tarefa de exemplo criada via API.",
+    "status": "uncompleted"
+  }
+}
+Atualizar os dados de uma tarefa existente
+Endpoint: PUT /tasks/{id}
+
+Descrição: Atualiza os dados de uma tarefa existente com base no ID fornecido.
+
+Parâmetros:
+
+id (obrigatório): O ID da tarefa que deseja atualizar.
+Corpo da requisição:
+
+json
+Copy code
+{
+  "title": "Tarefa atualizada",
+  "description": "Esta é a descrição atualizada da tarefa.",
+  "status": "completed"
+}
+Resposta esperada:
+
+json
+Copy code
+Status: 200 OK
+{
+  "message": "Tarefa atualizada com sucesso",
+  "task": {
+    "id": 3,
+    "title": "Tarefa atualizada",
+    "description": "Esta é a descrição atualizada da tarefa.",
+    "status": "completed"
+  }
+}
+Excluir uma tarefa
+Endpoint: DELETE /tasks/{id}
+
+Descrição: Exclui uma tarefa existente com base no ID fornecido.
+
+Parâmetros:
+
+id (obrigatório): O ID da tarefa que deseja excluir.
+Resposta esperada:
+
+json
+Copy code
+Status: 200 OK
+{
+  "message": "Tarefa excluída com sucesso"
+}
